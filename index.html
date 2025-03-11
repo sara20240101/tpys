@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片工具集</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+</head>
+<body>
+    <!-- 主容器 -->
+    <div class="container">
+        <!-- 顶部标题区域 -->
+        <header class="header">
+            <h1>图片工具集</h1>
+            <p>简单高效的在线图片处理服务</p>
+            <!-- 工具选择器 -->
+            <div class="tool-selector">
+                <button class="tool-button active" data-tool="compress">图片压缩</button>
+                <button class="tool-button" data-tool="card">文字卡片</button>
+            </div>
+        </header>
+
+        <!-- 主要内容区域 -->
+        <main class="main-content">
+            <!-- 图片压缩工具 -->
+            <div class="tool-section" id="compressTool">
+                <!-- 上传区域 -->
+                <section class="upload-section" id="uploadSection">
+                    <div class="upload-area" id="dropZone">
+                        <input type="file" id="fileInput" accept="image/png,image/jpeg" hidden>
+                        <div class="upload-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24">
+                                <path fill="currentColor" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"/>
+                            </svg>
+                        </div>
+                        <p>拖拽图片到这里或点击上传</p>
+                        <p class="upload-hint">支持 PNG、JPG 格式</p>
+                    </div>
+                </section>
+
+                <!-- 图片预览和控制区域 -->
+                <section class="preview-section" id="previewSection" style="display: none;">
+                    <div class="preview-container">
+                        <!-- 原图预览 -->
+                        <div class="preview-box">
+                            <h3>原图</h3>
+                            <div class="image-container">
+                                <img id="originalPreview" alt="原图预览">
+                            </div>
+                            <div class="image-info">
+                                <span>大小：<span id="originalSize">0 KB</span></span>
+                            </div>
+                        </div>
+
+                        <!-- 压缩后预览 -->
+                        <div class="preview-box">
+                            <h3>压缩后</h3>
+                            <div class="image-container">
+                                <img id="compressedPreview" alt="压缩后预览">
+                            </div>
+                            <div class="image-info">
+                                <span>大小：<span id="compressedSize">0 KB</span></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 控制面板 -->
+                    <div class="control-panel">
+                        <div class="quality-control">
+                            <label for="qualitySlider">压缩质量：<span id="qualityValue">80%</span></label>
+                            <input type="range" id="qualitySlider" min="0" max="100" value="80">
+                        </div>
+                        <button id="compressBtn" class="primary-button">开始压缩</button>
+                        <button id="downloadBtn" class="secondary-button" disabled>下载压缩后的图片</button>
+                        <button id="resetBtn" class="text-button">重新上传</button>
+                    </div>
+                </section>
+            </div>
+
+            <!-- 文字卡片生成器 -->
+            <div class="tool-section" id="cardTool" style="display: none;">
+                <div class="card-generator">
+                    <!-- 左侧编辑区域 -->
+                    <div class="edit-section">
+                        <div class="input-group">
+                            <label for="cardText">文字内容（支持 Markdown）</label>
+                            <textarea id="cardText" rows="6" placeholder="在这里输入文字..."></textarea>
+                        </div>
+
+                        <div class="style-controls">
+                            <!-- 预设颜色选择 -->
+                            <div class="control-group">
+                                <label>背景颜色</label>
+                                <div class="color-presets">
+                                    <button class="color-preset" data-color="#F5F5DC" style="background-color: #F5F5DC;">优雅米色</button>
+                                    <button class="color-preset" data-color="#E8F5E9" style="background-color: #E8F5E9;">清新绿色</button>
+                                    <button class="color-preset" data-color="#FFF9C4" style="background-color: #FFF9C4;">淡黄色</button>
+                                    <button class="color-preset" data-color="#F5F5F5" style="background-color: #F5F5F5;">浅灰色</button>
+                                    <button class="color-preset" data-color="#FCE4EC" style="background-color: #FCE4EC;">温柔粉色</button>
+                                    <button class="color-preset" data-color="#E3F2FD" style="background-color: #E3F2FD;">天空蓝色</button>
+                                </div>
+                            </div>
+
+                            <!-- 自定义颜色 -->
+                            <div class="control-group">
+                                <label>自定义颜色</label>
+                                <div class="rgb-inputs">
+                                    <input type="number" id="colorR" min="0" max="255" value="245" placeholder="R">
+                                    <input type="number" id="colorG" min="0" max="255" value="245" placeholder="G">
+                                    <input type="number" id="colorB" min="0" max="255" value="220" placeholder="B">
+                                    <button id="applyColor" class="secondary-button">应用</button>
+                                </div>
+                            </div>
+
+                            <!-- 边框样式 -->
+                            <div class="control-group">
+                                <label>边框样式</label>
+                                <div class="border-presets">
+                                    <button class="border-preset" data-border="gradient-yellow">渐变黄色</button>
+                                    <button class="border-preset" data-border="gradient-blue">渐变蓝色</button>
+                                    <button class="border-preset" data-border="gradient-pink">渐变粉色</button>
+                                    <button class="border-preset" data-border="solid-yellow">淡黄色</button>
+                                    <button class="border-preset" data-border="gradient-purple">炫酷紫色</button>
+                                </div>
+                            </div>
+
+                            <!-- 文字样式 -->
+                            <div class="control-group">
+                                <label>文字样式</label>
+                                <div class="text-controls">
+                                    <input type="range" id="fontSize" min="12" max="48" value="16">
+                                    <span id="fontSizeValue">16px</span>
+                                    <input type="color" id="textColor" value="#000000">
+                                </div>
+                            </div>
+
+                            <!-- 图片比例 -->
+                            <div class="control-group">
+                                <label>图片比例</label>
+                                <div class="ratio-buttons">
+                                    <button class="ratio-preset" data-ratio="3:4">3:4</button>
+                                    <button class="ratio-preset" data-ratio="4:3">4:3</button>
+                                    <button class="ratio-preset" data-ratio="16:9">16:9</button>
+                                    <button class="ratio-preset" data-ratio="9:16">9:16</button>
+                                    <button class="ratio-preset" data-ratio="1:1">1:1</button>
+                                </div>
+                            </div>
+
+                            <!-- 自动分割开关 -->
+                            <div class="control-group">
+                                <label class="switch-label">
+                                    <input type="checkbox" id="autoSplit">
+                                    <span class="switch-text">自动分割上下文</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 右侧预览区域 -->
+                    <div class="preview-section">
+                        <div class="card-preview" id="cardPreview">
+                            <div class="card-content">
+                                <div class="card-date" id="cardDate"></div>
+                                <div class="card-main-text"></div>
+                                <div class="card-footer">
+                                    <div class="card-word-count">字数：<span id="wordCount">0</span></div>
+                                    <div class="card-generator-mark">Generated by IMG2046</div>
+                                </div>
+                            </div>
+                        </div>
+                        <button id="downloadCard" class="primary-button">下载卡片</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/browser-image-compression@2.0.2/dist/browser-image-compression.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 
