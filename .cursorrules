@@ -53,3 +53,10 @@ cd C:\Users\Administrator\Desktop\图片压缩
 ```
 git --version
 ```
+
+# Git Remote Set-URL
+在 PowerShell 中运行以下命令以设置 Git 远程仓库 URL：
+
+```
+git remote set-url origin https://YOUR_TOKEN@github.com/sara20240101/tpys.git
+```
