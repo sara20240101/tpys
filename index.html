@@ -3,84 +3,310 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>图片工具集</title>
+    <title>图像魔方 - 一站式图像处理工具</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <!-- 添加字体图标库 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
 </head>
 <body>
     <!-- 主容器 -->
-    <div class="container">
-        <!-- 顶部标题区域 -->
-        <header class="header">
-            <h1>图片工具集</h1>
-            <p>简单高效的在线图片处理服务</p>
-            <!-- 工具选择器 -->
-            <div class="tool-selector">
-                <button class="tool-button active" data-tool="compress">图片压缩</button>
-                <button class="tool-button" data-tool="card">文字卡片</button>
+    <div class="app-container">
+        <!-- 左侧导航菜单 -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <h2>图像魔方</h2>
             </div>
-        </header>
+            <ul class="sidebar-menu">
+                <li class="menu-item active" data-tool="home">
+                    <i class="ri-home-line"></i>
+                    <span>首页</span>
+                </li>
+                <li class="menu-item" data-tool="ai-image">
+                    <i class="ri-image-line"></i>
+                    <span>AI 文生图</span>
+                </li>
+                <li class="menu-item" data-tool="card">
+                    <i class="ri-text-wrap"></i>
+                    <span>文字卡片生成</span>
+                </li>
+                <li class="menu-item" data-tool="compress">
+                    <i class="ri-file-reduce-line"></i>
+                    <span>图片压缩</span>
+                </li>
+                <li class="menu-item" data-tool="resize">
+                    <i class="ri-aspect-ratio-line"></i>
+                    <span>调整大小</span>
+                </li>
+                <li class="menu-item" data-tool="convert">
+                    <i class="ri-file-transfer-line"></i>
+                    <span>格式转换</span>
+                </li>
+                <li class="menu-item" data-tool="svg-editor">
+                    <i class="ri-shape-line"></i>
+                    <span>SVG 编辑器</span>
+                </li>
+                <li class="menu-item" data-tool="logo">
+                    <i class="ri-organization-chart"></i>
+                    <span>极简Logo设计</span>
+                </li>
+                <li class="menu-item" data-tool="svg-to-ppt">
+                    <i class="ri-slideshow-line"></i>
+                    <span>SVG转PPT</span>
+                </li>
+                <li class="menu-item" data-tool="text-behind-object">
+                    <i class="ri-focus-3-line"></i>
+                    <span>人物背景文字</span>
+                </li>
+            </ul>
+            <div class="sidebar-footer">
+                <a href="https://github.com/sara20240101/tpys" target="_blank">
+                    <i class="ri-github-fill"></i>
+                </a>
+                <a href="#" class="theme-toggle">
+                    <i class="ri-moon-line"></i>
+                </a>
+            </div>
+        </nav>
 
-        <!-- 主要内容区域 -->
+        <!-- 主内容区域 -->
         <main class="main-content">
+            <!-- 首页 -->
+            <section class="tool-section active" id="home-tool">
+                <div class="home-header">
+                    <h1>图像魔方：一站式图像处理工具</h1>
+                    <p class="subtitle">轻松处理您的图片，提升工作效率</p>
+                </div>
+                
+                <div class="features-grid">
+                    <div class="feature-card" data-tool="ai-image">
+                        <div class="feature-icon"><i class="ri-image-line"></i></div>
+                        <h3>AI 文生图</h3>
+                        <p>通过文字描述生成独特的AI图像，激发创意灵感，适用于各种创作场景。</p>
+                        <span class="feature-label">热门</span>
+                    </div>
+                    
+                    <div class="feature-card" data-tool="card">
+                        <div class="feature-icon"><i class="ri-text-wrap"></i></div>
+                        <h3>文字卡片生成</h3>
+                        <p>创建精美的文字卡片，自定义字体、颜色和背景，适合社交媒体分享和营销使用。</p>
+                        <span class="feature-label">推荐</span>
+                    </div>
+                    
+                    <div class="feature-card" data-tool="compress">
+                        <div class="feature-icon"><i class="ri-file-reduce-line"></i></div>
+                        <h3>图片压缩</h3>
+                        <p>高效压缩图片文件大小，保持画质的同时优化加载速度，提升网站性能。</p>
+                    </div>
+                    
+                    <div class="feature-card" data-tool="resize">
+                        <div class="feature-icon"><i class="ri-aspect-ratio-line"></i></div>
+                        <h3>调整大小</h3>
+                        <p>快速调整图片尺寸，保持比例或自定义大小，适应各种平台要求。</p>
+                    </div>
+                    
+                    <div class="feature-card" data-tool="convert">
+                        <div class="feature-icon"><i class="ri-file-transfer-line"></i></div>
+                        <h3>图片格式转换</h3>
+                        <p>轻松将图片转换为各种格式，支持JPG、PNG、WEBP、GIF等，满足不同场景需求。</p>
+                    </div>
+                    
+                    <div class="feature-card" data-tool="svg-editor">
+                        <div class="feature-icon"><i class="ri-shape-line"></i></div>
+                        <h3>SVG 编辑器</h3>
+                        <p>在线创建和编辑SVG图形，轻松设计可缩放的矢量图像，适用于各种设计需求。</p>
+                        <span class="feature-label">即将推出</span>
+                    </div>
+                    
+                    <div class="feature-card" data-tool="logo">
+                        <div class="feature-icon"><i class="ri-organization-chart"></i></div>
+                        <h3>极简Logo设计</h3>
+                        <p>使用AI技术快速生成简洁现代的logo设计，为您的品牌打造独特标识。</p>
+                        <span class="feature-label">新功能</span>
+                    </div>
+                    
+                    <div class="feature-card" data-tool="svg-to-ppt">
+                        <div class="feature-icon"><i class="ri-slideshow-line"></i></div>
+                        <h3>SVG转PPT</h3>
+                        <p>将SVG代码转换为精美的PPT幻灯片，快速创建专业演示文稿。</p>
+                        <span class="feature-label">即将推出</span>
+                    </div>
+                </div>
+
+                <div class="faq-section">
+                    <h2>常见问题</h2>
+                    <div class="faq-grid">
+                        <div class="faq-item">
+                            <h3>图像魔方是免费使用的吗？</h3>
+                            <p>是的，图像魔方的基础功能完全免费。我们可能会在未来推出一些高级功能，但核心工具将始终保持免费。</p>
+                        </div>
+                        <div class="faq-item">
+                            <h3>我的图片数据安全吗？</h3>
+                            <p>我们非常重视用户隐私。所有的图片处理都在您的浏览器中进行，不会上传到我们的服务器。您的图片数据完全安全。</p>
+                        </div>
+                        <div class="faq-item">
+                            <h3>图像魔方支持哪些图片格式？</h3>
+                            <p>我们支持大多数常见的图片格式，包括JPG、PNG、WEBP、GIF等。对于特定工具的格式支持，请查看相应工具页面的详细说明。</p>
+                        </div>
+                        <div class="faq-item">
+                            <h3>如何报告问题或提出建议？</h3>
+                            <p>我们欢迎您的反馈！请通过页面底部的联系方式或社交媒体与我们取得联系。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- AI 文生图工具部分 -->
+            <section class="tool-section" id="ai-image-tool">
+                <div class="section-header">
+                    <h2>AI 文生图</h2>
+                    <p>通过文字描述生成独特的AI图像</p>
+                </div>
+                <div class="tool-container glass-morphism">
+                    <div class="ai-image-form">
+                        <div class="form-group">
+                            <label for="prompt">描述您想要生成的图像内容：</label>
+                            <textarea id="prompt" placeholder="例如：一只可爱的小猫在阳光明媚的花园里玩耍" rows="4"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>图像风格：</label>
+                            <div class="style-options">
+                                <button class="style-btn active" data-style="realistic">写实风格</button>
+                                <button class="style-btn" data-style="cartoon">卡通风格</button>
+                                <button class="style-btn" data-style="sketch">素描风格</button>
+                                <button class="style-btn" data-style="oil">油画风格</button>
+                                <button class="style-btn" data-style="anime">动漫风格</button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>尺寸比例：</label>
+                            <div class="ratio-options">
+                                <button class="ratio-btn active" data-ratio="1:1">1:1</button>
+                                <button class="ratio-btn" data-ratio="16:9">16:9</button>
+                                <button class="ratio-btn" data-ratio="9:16">9:16</button>
+                                <button class="ratio-btn" data-ratio="4:3">4:3</button>
+                                <button class="ratio-btn" data-ratio="3:4">3:4</button>
+                            </div>
+                        </div>
+                        <button id="generate-btn" class="primary-btn">生成图像</button>
+                    </div>
+                    <div class="ai-image-result">
+                        <div class="image-placeholder">
+                            <i class="ri-image-line"></i>
+                            <p>生成的图像将显示在这里</p>
+                        </div>
+                        <div class="result-controls" style="display: none;">
+                            <button id="download-ai-image" class="secondary-btn"><i class="ri-download-line"></i> 下载图像</button>
+                            <button id="regenerate-btn" class="secondary-btn"><i class="ri-refresh-line"></i> 重新生成</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="coming-soon-notice">
+                    <p><i class="ri-information-line"></i> AI 文生图功能即将推出，敬请期待！</p>
+                </div>
+            </section>
+            
             <!-- 图片压缩工具 -->
-            <div class="tool-section" id="compressTool">
-                <!-- 上传区域 -->
-                <section class="upload-section" id="uploadSection">
-                    <div class="upload-area" id="dropZone">
-                        <input type="file" id="fileInput" accept="image/png,image/jpeg" hidden>
-                        <div class="upload-icon">
-                            <svg width="48" height="48" viewBox="0 0 24 24">
-                                <path fill="currentColor" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"/>
-                            </svg>
-                        </div>
-                        <p>拖拽图片到这里或点击上传</p>
-                        <p class="upload-hint">支持 PNG、JPG 格式</p>
-                    </div>
-                </section>
-
-                <!-- 图片预览和控制区域 -->
-                <section class="preview-section" id="previewSection" style="display: none;">
-                    <div class="preview-container">
-                        <!-- 原图预览 -->
-                        <div class="preview-box">
-                            <h3>原图</h3>
-                            <div class="image-container">
-                                <img id="originalPreview" alt="原图预览">
-                            </div>
-                            <div class="image-info">
-                                <span>大小：<span id="originalSize">0 KB</span></span>
-                            </div>
-                        </div>
-
-                        <!-- 压缩后预览 -->
-                        <div class="preview-box">
-                            <h3>压缩后</h3>
-                            <div class="image-container">
-                                <img id="compressedPreview" alt="压缩后预览">
-                            </div>
-                            <div class="image-info">
-                                <span>大小：<span id="compressedSize">0 KB</span></span>
-                            </div>
+            <section class="tool-section" id="compress-tool">
+                <div class="section-header">
+                    <h2>图片压缩</h2>
+                    <p>高效压缩图片文件大小，保持画质的同时优化加载速度</p>
+                </div>
+                
+                <div class="tool-container glass-morphism">
+                    <div class="upload-section">
+                        <div class="upload-area" id="compressDropArea">
+                            <i class="ri-upload-cloud-line upload-icon"></i>
+                            <h3>拖放图片到这里或点击上传</h3>
+                            <p>支持 JPG、PNG 格式，最大 5MB</p>
+                            <input type="file" id="compressFileInput" accept="image/jpeg, image/png" style="display: none;">
+                            <button class="primary-btn upload-btn">选择图片</button>
                         </div>
                     </div>
-
-                    <!-- 控制面板 -->
-                    <div class="control-panel">
-                        <div class="quality-control">
-                            <label for="qualitySlider">压缩质量：<span id="qualityValue">80%</span></label>
-                            <input type="range" id="qualitySlider" min="0" max="100" value="80">
+                    
+                    <div class="compress-result" style="display: none;">
+                        <div class="comparison-view">
+                            <div class="preview-box">
+                                <h3>原始图片</h3>
+                                <div class="image-container" id="originalImageContainer">
+                                    <img id="originalImage" alt="原始图片">
+                                </div>
+                                <div class="image-info" id="originalInfo">
+                                    <p>尺寸: <span id="originalSize">0 KB</span></p>
+                                    <p>分辨率: <span id="originalResolution">0 x 0</span></p>
+                                </div>
+                            </div>
+                            
+                            <div class="preview-box">
+                                <h3>压缩后</h3>
+                                <div class="image-container" id="compressedImageContainer">
+                                    <div class="placeholder">处理后的图片将显示在这里</div>
+                                </div>
+                                <div class="image-info" id="compressedInfo">
+                                    <p>尺寸: <span id="compressedSize">0 KB</span></p>
+                                    <p>压缩率: <span id="compressionRatio">0%</span></p>
+                                </div>
+                            </div>
                         </div>
-                        <button id="compressBtn" class="primary-button">开始压缩</button>
-                        <button id="downloadBtn" class="secondary-button" disabled>下载压缩后的图片</button>
-                        <button id="resetBtn" class="text-button">重新上传</button>
+                        
+                        <div class="control-panel">
+                            <div class="control-group">
+                                <label for="qualitySlider">压缩质量</label>
+                                <div class="slider-container">
+                                    <input type="range" id="qualitySlider" min="30" max="100" value="80" class="slider">
+                                    <span id="qualityValue">80%</span>
+                                </div>
+                            </div>
+                            
+                            <div class="control-group">
+                                <label>输出格式</label>
+                                <div class="format-options">
+                                    <button class="format-btn active" data-format="jpeg">JPEG</button>
+                                    <button class="format-btn" data-format="png">PNG</button>
+                                    <button class="format-btn" data-format="webp">WEBP</button>
+                                </div>
+                            </div>
+                            
+                            <div class="action-buttons">
+                                <button id="compressBtn" class="primary-btn">压缩图片</button>
+                                <button id="downloadCompressedBtn" class="secondary-btn" disabled>
+                                    <i class="ri-download-line"></i> 下载图片
+                                </button>
+                                <button id="resetCompressBtn" class="secondary-btn">
+                                    <i class="ri-refresh-line"></i> 重置
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                </section>
-            </div>
+                </div>
+                
+                <div class="features-info">
+                    <div class="info-card">
+                        <i class="ri-speed-line"></i>
+                        <h3>快速高效</h3>
+                        <p>使用先进的算法，在几秒钟内高效压缩图片，节省您的时间和精力。</p>
+                    </div>
+                    <div class="info-card">
+                        <i class="ri-image-line"></i>
+                        <h3>保持画质</h3>
+                        <p>智能压缩技术可以在减小文件大小的同时最大程度保持图片质量。</p>
+                    </div>
+                    <div class="info-card">
+                        <i class="ri-lock-line"></i>
+                        <h3>隐私保护</h3>
+                        <p>所有处理都在本地完成，您的图片不会上传到服务器，确保数据安全。</p>
+                    </div>
+                </div>
+            </section>
 
             <!-- 文字卡片生成器 -->
-            <div class="tool-section" id="cardTool" style="display: none;">
+            <div class="tool-section" id="cardTool">
+                <div class="tool-header">
+                    <h2>文字卡片生成</h2>
+                    <p>创建精美的文字卡片，支持 Markdown 格式</p>
+                </div>
+                
                 <div class="card-generator">
                     <!-- 左侧编辑区域 -->
                     <div class="edit-section">
@@ -166,7 +392,7 @@
                                 <div class="card-main-text"></div>
                                 <div class="card-footer">
                                     <div class="card-word-count">字数：<span id="wordCount">0</span></div>
-                                    <div class="card-generator-mark">Generated by IMG2046</div>
+                                    <div class="card-generator-mark">Generated by 图像魔方</div>
                                 </div>
                             </div>
                         </div>
@@ -174,10 +400,216 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- 调整大小工具 -->
+            <div class="tool-section" id="resizeTool">
+                <div class="tool-header">
+                    <h2>调整图片大小</h2>
+                    <p>快速调整图片尺寸，保持比例或自定义大小</p>
+                </div>
+                
+                <!-- 上传区域 -->
+                <section class="upload-section" id="resizeUploadSection">
+                    <div class="upload-area" id="resizeDropZone">
+                        <input type="file" id="resizeFileInput" accept="image/*" hidden>
+                        <div class="upload-icon">
+                            <i class="ri-upload-cloud-2-line"></i>
+                        </div>
+                        <p>拖拽图片到这里或点击上传</p>
+                        <p class="upload-hint">支持 PNG、JPG、GIF、WEBP 格式</p>
+                    </div>
+                </section>
+                
+                <!-- 调整大小控制和预览区域 -->
+                <section class="resize-control-section" id="resizeControlSection" style="display: none;">
+                    <div class="resize-container">
+                        <div class="resize-preview">
+                            <h3>图片预览</h3>
+                            <div class="image-container">
+                                <img id="resizePreview" alt="预览">
+                            </div>
+                            <div class="image-info">
+                                <span>原始尺寸：<span id="originalDimensions">0 x 0 px</span></span>
+                            </div>
+                        </div>
+                        
+                        <div class="resize-controls">
+                            <div class="control-group">
+                                <label>调整模式</label>
+                                <div class="resize-mode-buttons">
+                                    <button class="mode-button active" data-mode="dimensions">自定义尺寸</button>
+                                    <button class="mode-button" data-mode="percentage">按百分比</button>
+                                </div>
+                            </div>
+                            
+                            <div class="control-group" id="dimensionsControls">
+                                <label>新尺寸 (像素)</label>
+                                <div class="dimensions-inputs">
+                                    <div class="dimension-field">
+                                        <label for="widthInput">宽度</label>
+                                        <input type="number" id="widthInput" min="1" placeholder="宽度">
+                                    </div>
+                                    <div class="dimension-field">
+                                        <label for="heightInput">高度</label>
+                                        <input type="number" id="heightInput" min="1" placeholder="高度">
+                                    </div>
+                                </div>
+                                <div class="switch-label">
+                                    <input type="checkbox" id="maintainRatio" checked>
+                                    <span class="switch-text">保持宽高比</span>
+                                </div>
+                            </div>
+                            
+                            <div class="control-group" id="percentageControls" style="display: none;">
+                                <label>调整比例</label>
+                                <div class="percentage-input">
+                                    <input type="number" id="percentageInput" min="1" max="200" value="100">
+                                    <span>%</span>
+                                </div>
+                            </div>
+                            
+                            <div class="control-group">
+                                <label>输出格式</label>
+                                <div class="format-buttons">
+                                    <button class="format-button active" data-format="jpeg">JPEG</button>
+                                    <button class="format-button" data-format="png">PNG</button>
+                                    <button class="format-button" data-format="webp">WEBP</button>
+                                </div>
+                            </div>
+                            
+                            <div class="control-group">
+                                <label for="qualitySliderResize">图片质量：<span id="qualityValueResize">90%</span></label>
+                                <input type="range" id="qualitySliderResize" min="10" max="100" value="90">
+                            </div>
+                            
+                            <button id="applyResizeBtn" class="primary-button">应用调整</button>
+                            <button id="downloadResizedBtn" class="secondary-button" disabled>下载调整后的图片</button>
+                            <button id="resetResizeBtn" class="text-button">重新上传</button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            
+            <!-- 格式转换工具 -->
+            <div class="tool-section" id="convertTool">
+                <div class="tool-header">
+                    <h2>图片格式转换</h2>
+                    <p>轻松将图片转换为各种格式，满足不同场景需求</p>
+                </div>
+                
+                <!-- 上传区域 -->
+                <section class="upload-section" id="convertUploadSection">
+                    <div class="upload-area" id="convertDropZone">
+                        <input type="file" id="convertFileInput" accept="image/*" hidden>
+                        <div class="upload-icon">
+                            <i class="ri-upload-cloud-2-line"></i>
+                        </div>
+                        <p>拖拽图片到这里或点击上传</p>
+                        <p class="upload-hint">支持 PNG、JPG、GIF、WEBP 格式</p>
+                    </div>
+                </section>
+                
+                <!-- 转换控制区域 -->
+                <section class="convert-control-section" id="convertControlSection" style="display: none;">
+                    <div class="convert-container">
+                        <div class="convert-preview">
+                            <h3>图片预览</h3>
+                            <div class="image-container">
+                                <img id="convertPreview" alt="预览">
+                            </div>
+                            <div class="image-info">
+                                <span>当前格式：<span id="currentFormat">未知</span></span>
+                                <span>文件大小：<span id="currentFileSize">0 KB</span></span>
+                            </div>
+                        </div>
+                        
+                        <div class="convert-controls">
+                            <div class="control-group">
+                                <label>目标格式</label>
+                                <div class="format-buttons">
+                                    <button class="format-button" data-format="jpeg">JPEG</button>
+                                    <button class="format-button" data-format="png">PNG</button>
+                                    <button class="format-button" data-format="webp">WEBP</button>
+                                    <button class="format-button" data-format="gif">GIF</button>
+                                </div>
+                            </div>
+                            
+                            <div class="quality-control" id="convertQualityControl">
+                                <label for="qualitySliderConvert">图片质量：<span id="qualityValueConvert">90%</span></label>
+                                <input type="range" id="qualitySliderConvert" min="10" max="100" value="90">
+                            </div>
+                            
+                            <button id="convertBtn" class="primary-button">开始转换</button>
+                            <button id="downloadConvertedBtn" class="secondary-button" disabled>下载转换后的图片</button>
+                            <button id="resetConvertBtn" class="text-button">重新上传</button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            
+            <!-- 更多工具的占位符 -->
+            <div class="tool-section" id="logoTool">
+                <div class="tool-header">
+                    <h2>极简 Logo 设计</h2>
+                    <p>使用AI技术快速生成简洁现代的logo设计（即将推出）</p>
+                </div>
+                <div class="coming-soon">
+                    <i class="ri-rocket-line"></i>
+                    <h3>功能即将推出</h3>
+                    <p>我们正在努力开发这个功能，敬请期待！</p>
+                </div>
+            </div>
         </main>
+
+        <!-- 页脚 -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>关于我们</h3>
+                    <p>图像魔方是一个强大的在线图像处理工具集，提供多种图像处理功能和 AI 创意工具，帮助用户轻松处理图片并提升工作效率。</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>联系方式</h3>
+                    <p><i class="ri-mail-line"></i> 邮箱：<a href="mailto:service@img2046.com">service@img2046.com</a></p>
+                    <p><i class="ri-wechat-line"></i> 微信：img2046</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>相关链接</h3>
+                    <ul>
+                        <li><a href="https://github.com/sara20240101/tpys" target="_blank">GitHub 仓库</a></li>
+                        <li><a href="#" target="_blank">使用指南</a></li>
+                        <li><a href="#" target="_blank">隐私政策</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>推荐资源</h3>
+                    <div class="resource-cards">
+                        <a href="#" class="resource-card">
+                            <h4>AI 进阶教程</h4>
+                            <p>从入门到精通的完整指南</p>
+                        </a>
+                        <a href="#" class="resource-card">
+                            <h4>设计师工具包</h4>
+                            <p>提升设计效率的必备工具</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2024 图像魔方 - 一站式图像处理工具</p>
+                <p>Powered by <a href="https://github.com/sara20240101/tpys" target="_blank">HTML5 & JavaScript</a></p>
+            </div>
+        </footer>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/browser-image-compression@2.0.2/dist/browser-image-compression.js"></script>
+    <!-- 加载图片压缩库 -->
+    <script src="https://cdn.jsdelivr.net/npm/browser-image-compression@2.0.0/dist/browser-image-compression.min.js"></script>
+    
+    <!-- 加载主脚本 -->
     <script src="script.js"></script>
 </body>
 </html> 
